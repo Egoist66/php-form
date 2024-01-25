@@ -5,7 +5,7 @@
 echo "<pre>";
 
 
-function uploadFile()
+function uploadFile(): void
 {
 
     if ($_FILES) {
@@ -46,7 +46,7 @@ function uploadFile()
                 echo 'Файл успешно загружен: ' . "<a target='_blank' href='$filePaths[$i]'>$fileNames[$i]</a><br>";
 
                 if (str_ends_with($fileNames[$i], ".png") || str_ends_with($fileNames[$i], ".jpg")) {
-                    echo "<a href='$filePaths[$i]'><img src='/files/$fileNames[$i]'/></a>";
+                    echo "<a href='$filePaths[$i]'><img src='/files/$fileNames[$i]' alt='img'/></a>";
                 }
             } else {
                 echo 'Ошибка загрузки файла: ' . $filePaths[$i] . "<br>";
@@ -56,7 +56,8 @@ function uploadFile()
     }
 }
 
-function eraseDir(string $path){
+function eraseDir(string $path): void
+{
     if($_POST){
         $action = $_POST['action'];
 
