@@ -11,6 +11,12 @@
         body,html {
             font-family: arial;
         }
+        img {
+            max-width: 100%;
+            display: block;
+            margin: 20px 0px;
+            width: 300px;
+        }
         pre {
             font-size: 20px;
         }
@@ -19,9 +25,9 @@
 <body>
 
 
-    <?php require_once('./upload.php') ?>
+    <?php require_once('./upload.php'); ?>
 
-
+  
     
 </body>
 </html>
