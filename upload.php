@@ -18,11 +18,9 @@ function uploadFile(): void
 
                     if ($key === "name") {
 
-                        $outDir = __DIR__ . "/files/$value[$i]";
                         $filePaths[] = "/files/$value[$i]";
                         $fileNames[] = $value[$i];
-
-                        $outDirs[] = $outDir; // Сохранение выходной директории в массив
+                        $outDirs[] = __DIR__ . "/files/$value[$i]";
 
                     }
 
@@ -31,9 +29,8 @@ function uploadFile(): void
                             echo ('Превышен размер файла');
                             return;
                         }
-
-                        $tempName = $value[$i];
-                        $tempNames[] = $tempName; // Сохранение временного имени файла в массив
+                        
+                        $tempNames[] = $value[$i];
 
                     }
                 }
