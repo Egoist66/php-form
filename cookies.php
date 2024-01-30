@@ -27,3 +27,6 @@ function plus(string $key) {
     }
 }
 
+?>
+
+<a href="http://localhost:3003/php-form/">To main</a>

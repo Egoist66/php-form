@@ -18,7 +18,7 @@ function uploadFile(): void
 
                     if ($key === "name") {
 
-                        $filePaths[] = "/files/$value[$i]";
+                        $filePaths[] = "./files/$value[$i]";
                         $fileNames[] = $value[$i];
                         $outDirs[] = __DIR__ . "/files/$value[$i]";
 
@@ -43,7 +43,7 @@ function uploadFile(): void
                 echo 'Файл успешно загружен: ' . "<a target='_blank' href='$filePaths[$i]'>$fileNames[$i]</a><br>";
 
                 if (str_ends_with($fileNames[$i], ".png") || str_ends_with($fileNames[$i], ".jpg")) {
-                    echo "<a href='$filePaths[$i]'><img src='/files/$fileNames[$i]' alt='img'/></a>";
+                    echo "<a href='$filePaths[$i]'><img src='./files/$fileNames[$i]' alt='img'/></a>";
                 }
             } else {
                 echo 'Ошибка загрузки файла: ' . $filePaths[$i] . "<br>";
