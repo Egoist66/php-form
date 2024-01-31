@@ -26,7 +26,7 @@
 
 
     <?php require_once('./upload.php'); ?>
-    <?php require_once('./class.php'); ?>
+    <?php require_once('./polimorf.php'); ?>
 
   
     

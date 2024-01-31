@@ -1,4 +1,5 @@
 <?php 
+declare(strict_types=1);
 
 require_once './oop.php';
 
@@ -113,9 +114,27 @@ $subject->attach($observer1);
 
 
 
+abstract  class Admin {
+
+    abstract public function getId() : string;
+}
+
+class Admin1 extends Admin {
+  
+ 
+   public function getId() : string {
+       return 'hello';
+   }
+}
+
+// const adm = new Admin1();
+// echo adm->getId();
+
 
 class Constructor {
     private int $num;
+
+
 
     public function __construct($name){
         $this->num = $name;
@@ -128,22 +147,56 @@ class Constructor {
 
         
     }
-}
 
-// $obj = new Constructor(6);
-// var_dump($obj);
+    public function __set($name, $value){
+        $this->$name = $value;
+    }
 
+    public function __get(string $name){
+        if(isset($this->$name)){
+            return $this->$name;
+        }
+        return "Such property: '$name' does not exist";
+    }
 
-abstract class Admin {
-    public function getId(){
-        echo '#44wrewvdsfsw43';
+    public function __toString(){
+        return json_encode($this);
     }
 }
 
-class Admin1 extends Admin {
-   
+echo "<pre>";
+
+
+$obj = new Constructor(6);
+
+echo $obj;
+echo $obj->num . "<br><br>";
+
+var_dump($obj);
+
+echo "</pre>";
+
+
+
+
+enum MyExceptionCase {
+    case InvalidMethod;
+    case InvalidProperty;
+    case Timeout;
 }
 
-const adm = new Admin1();
-adm->getId();
+class MyException extends Exception {
+    function __construct(private MyExceptionCase $case){
+        match($case){
+            MyExceptionCase::InvalidMethod      =>    parent::__construct("Bad Request - Invalid Method", 400),
+            MyExceptionCase::InvalidProperty    =>    parent::__construct("Bad Request - Invalid Property", 400),
+            MyExceptionCase::Timeout            =>    parent::__construct("Bad Request - Timeout", 400)
+        };
+    }
+}
 
+try {
+    throw new MyException(MyExceptionCase::InvalidMethod);
+} catch (MyException $myE) {
+    echo $myE->getMessage();  // Bad Request - Invalid Method
+}
